@@ -105,124 +105,221 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
 ```sql
--- Paste your SQL code below for Question 1
+create table Orders(
+OrderID int primary key,
+OrderDate date not null,
+CustomerID int,
+foreign key (CustomerID) references Customers(CustomerID)
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1314" height="629" alt="image" src="https://github.com/user-attachments/assets/f13a1b5e-e6bf-49d1-bc95-2621f222cf79" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
 
 ```sql
--- Paste your SQL code below for Question 2
+create table contacts(
+contact_id int primary key,
+first_name text not null,
+last_name text not null,
+email text,
+phone text not null check(length(phone)>=10)
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1305" height="664" alt="image" src="https://github.com/user-attachments/assets/5cf29697-de20-4838-82fc-7a117b49e48c" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Insert the below data into the Student_details table, allowing the Subject and MARKS columns to take their default values.
+
+RollNo      Name          Gender      
+----------  ------------  ----------  
+204         Samuel Black  M          
+
+Note: The Subject and MARKS columns will use their default values.
+ 
 
 ```sql
--- Paste your SQL code below for Question 3
+insert into Student_details (RollNo,Name,Gender)
+values
+(204,'Samuel Black','M')
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="798" height="645" alt="image" src="https://github.com/user-attachments/assets/f30ede1e-6a85-40d1-96b9-ef1e10ed969d" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to add birth_date attribute as timestamp (datatype) in the table customer 
+
+Sample table: customer
+
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+ 
 
 ```sql
--- Paste your SQL code below for Question 4
+alter table customer add birth_date timestamp;
 ```
 
 **Output:**
+<img width="1068" height="491" alt="image" src="https://github.com/user-attachments/assets/85890195-279c-4fbd-9479-6d3304f0ca99" />
 
-![Output4](output.png)
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL Query for inserting the below values in the table Customers
+
+ID               NAME             AGE  ADDRESS     SALARY      
+---------------  ---------------  ---  ----------  ----------  
+1                Ramesh           32   Ahmedabad   2000
+2                Khilan           25   Delhi       1500
+3                Kaushik          23   Kota        2000
 
 ```sql
--- Paste your SQL code below for Question 5
+insert into Customers
+values
+(1,'Ramesh','32','Ahmedabad','2000'),
+(2,'Khilan','25','Delhi','1500'),
+(3,'Kaushik','23','Kota','2000')
 ```
 
 **Output:**
 
-![Output5](output.png)
+
 
 **Question 6**
 ---
 -- Paste Question 6 here
 
 ```sql
--- Paste your SQL code below for Question 6
+alter table Student_details add Country TEXT;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="934" height="509" alt="image" src="https://github.com/user-attachments/assets/8f7cd56e-8d2c-4081-8607-aaf961efb53a" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to Add a new column Country as text in the Student_details table.
+
+Sample table: Student_details
+
+ cid              name             type   notnull     dflt_value  pk
+---------------  ---------------  -----  ----------  ----------  ----------
+0                RollNo           int    0                       1
+1                Name             VARCH  1                       0
+2                Gender           TEXT   1                       0
+3                Subject          VARCH  0                       0
+4                MARKS            INT (  0                       0
 
 ```sql
--- Paste your SQL code below for Question 7
+create table Products(
+ProductID INTEGER,
+ProductName TEXT,
+Price REAL,
+Stock INTEGER
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1084" height="622" alt="image" src="https://github.com/user-attachments/assets/3adb6b49-9eba-47fc-8dff-d1f601450e8a" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Invoices with the following constraints:
+
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+DueDate as DATE should be greater than the InvoiceDate.
+Amount as REAL should be greater than 0.
 
 ```sql
--- Paste your SQL code below for Question 8
+create table Invoices(
+InvoiceID INTEGER PRIMARY KEY,
+InvoiceDate DATE,
+DueDate DATE check (DueDate>InvoiceDate),
+Amount REAL check(Amount>0)
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1005" height="626" alt="image" src="https://github.com/user-attachments/assets/0c68ad95-3c1c-470c-846b-6607d3f97e44" />
+
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 
 ```sql
--- Paste your SQL code below for Question 9
+create table ProjectAssignments(
+AssignmentID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+ProjectID INTEGER,
+AssignmentDate DATE not null,
+foreign key (EmployeeID) references Employees(EmployeeID),
+foreign key (ProjectID) references Projects(ProjectID)
+);
 ```
 
 **Output:**
+<img width="1099" height="459" alt="image" src="https://github.com/user-attachments/assets/33f7d3f3-b84b-41b4-a429-3c834ee2db90" />
 
-![Output9](output.png)
 
 **Question 10**
 ---
--- Paste Question 10 here
+Insert all employees from Former_employees into Employee
+
+Table attributes are EmployeeID, Name, Department, Salary
+
+
 
 ```sql
--- Paste your SQL code below for Question 10
+insert into Employee(EmployeeID,Name,Department,Salary) select EmployeeID,Name,Department,Salary from Former_employees
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="626" height="463" alt="image" src="https://github.com/user-attachments/assets/db214b74-b54c-44da-be49-0a192c32843f" />
+
 
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+
+
